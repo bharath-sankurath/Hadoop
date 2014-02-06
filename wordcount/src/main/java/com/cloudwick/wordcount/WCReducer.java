@@ -15,12 +15,13 @@ public class WCReducer extends Reducer<Text,IntWritable,Text, IntWritable> {
 	protected void reduce(Text key, Iterable<IntWritable> countlist, Context context)
 			throws IOException, InterruptedException {
 		// TODO Auto-generated method stub
-		int count=0;
-		for(IntWritable val:countlist)
+		int sum=0;
+		for(IntWritable count:countlist)
 		{
-			count+=val.get();
+			sum+=count.get();
 		}
-		context.write(key,new IntWritable(count));
+		System.out.println("the sum of the reducer is :"+sum);
+		context.write(key,new IntWritable(sum));
 			
 	}
 	
